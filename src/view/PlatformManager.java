@@ -9,6 +9,7 @@ import jade.wrapper.AgentController;
 import main.Main;
 import jade.wrapper.ContainerController;
 import jade.wrapper.StaleProxyException;
+import java.awt.EventQueue;
 import misc.Logger;
 import util.Utils;
 
@@ -45,6 +46,7 @@ public class PlatformManager extends javax.swing.JFrame {
         txt_agent_name = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_list_agent = new javax.swing.JTable();
+        btnSearchClient = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -82,6 +84,13 @@ public class PlatformManager extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_list_agent);
 
+        btnSearchClient.setText("Search Client");
+        btnSearchClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchClientActionPerformed(evt);
+            }
+        });
+
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jMenuBar1.setToolTipText("");
         jMenuBar1.setAlignmentX(5.0F);
@@ -116,12 +125,14 @@ public class PlatformManager extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(76, 76, 76)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAddAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(75, 75, 75)
-                        .addComponent(txt_agent_name, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txt_agent_name, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSearchClient)))
                 .addContainerGap(223, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -130,7 +141,8 @@ public class PlatformManager extends javax.swing.JFrame {
                 .addGap(138, 138, 138)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddAgent)
-                    .addComponent(txt_agent_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_agent_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchClient))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
@@ -163,6 +175,21 @@ public class PlatformManager extends javax.swing.JFrame {
             Logger.error(ex, "Agent couldn't created.");
         }
     }//GEN-LAST:event_btnAddAgentActionPerformed
+
+    private void btnSearchClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchClientActionPerformed
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Logger.info("Starting Platform Client Manager UI...");
+                    ClientManager clientManager = new ClientManager(main, container_controller);
+                    clientManager.setVisible(true);
+                } catch (Exception e) {
+                    Logger.error(e, "Couldn't start Platform Manage UI!");
+                }
+            }
+        });
+    }//GEN-LAST:event_btnSearchClientActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,6 +228,7 @@ public class PlatformManager extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddAgent;
+    private javax.swing.JButton btnSearchClient;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

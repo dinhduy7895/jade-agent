@@ -1,1 +1,1 @@
-( ap-description  :name "10.10.33.57:1234/JADE" :ap-services (set ( ap-service  :name fipa.mts.mtp.http.std :type fipa.mts.mtp.http.std :addresses (sequence http://zydin-Inspiron-5567:7778/acc))))
+( ap-description  :name "192.168.1.6:1111/JADE" :ap-services (set))
