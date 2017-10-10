@@ -5,6 +5,7 @@
  */
 package view;
 
+import jade.core.Agent;
 import jade.wrapper.AgentController;
 import main.Main;
 import jade.wrapper.ContainerController;
@@ -171,6 +172,43 @@ public class PlatformManager extends javax.swing.JFrame {
             count_row++;
 
             ac.start();
+            //            String host = "172.16.200.100"; // Platform IP
+//            int port = 1099; // default-port 1099
+//
+//            String MTP_hostIP = "172.16.200.100";
+//            String MTP_Port = "7778";
+//
+//            Runtime runtime = Runtime.instance();
+//
+//            Profile profile = new ProfileImpl(host, port, null, true);
+//            profile.setParameter(Profile.MTPS, "jade.mtp.http.MessageTransportProtocol(http://" + MTP_hostIP + ":" + MTP_Port + "/acc)");
+//            AgentContainer container;
+//            container = runtime.createMainContainer(profile);
+//
+//            try {
+//                AgentController ac1 = container.createNewAgent("AgentCamera", AgentCamera.class.getName(), null);
+//                ac1.start();
+//            } catch (StaleProxyException e) {
+//                e.printStackTrace();
+//            }
+//
+            Agent test = (Agent) container_controller.createNewAgent("test", "agent.Communication", null);
+//            AID remoteAMS = new AID("ams@192.168.1.15", AID.ISGUID);
+//            remoteAMS.addAddresses("http://192.168.1.15:7778/acc");
+//            PlatformID destination = new PlatformID(remoteAMS);
+//            test.doMove(destination);
+//            System.out.println("In host2");
+//            System.out.println("My LocalName: " + test.getAID().getLocalName());
+//            System.out.println("My Name: " + test.getAID().getName());
+//            System.out.println("My Address: " + test.getAID().getAddressesArray()[0]);
+
+//            ACLMessage msgp = new ACLMessage(ACLMessage.SUBSCRIBE);
+//            msgp.setContent("subscribe1");
+//            AID remoteAMSf = new AID("salubhai@192.168.1.15:12349/JADE", AID.ISGUID);
+//            remoteAMSf.addAddresses("http://192.168.1.15:7778/acc");
+//            msgp.addReceiver(remoteAMSf);
+//            send(msgp);
+            
         } catch (StaleProxyException ex) {
             Logger.error(ex, "Agent couldn't created.");
         }
