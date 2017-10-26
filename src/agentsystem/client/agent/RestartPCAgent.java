@@ -1,0 +1,27 @@
+package agentsystem.client.agent;
+
+import agentsystem.client.utils.SystemManager;
+
+import jade.core.behaviours.CyclicBehaviour;
+import jade.lang.acl.ACLMessage;
+
+public class RestartPCAgent extends MobileAgent {
+	@Override
+	protected void setup() {
+		addBehaviour(new RestartPC());
+	}
+	
+	private class RestartPC extends CyclicBehaviour{
+		@Override
+		public void action() {
+			ACLMessage msg = myAgent.receive();
+			if(msg!= null){
+				if (isNormalMessage(msg)) {
+					SystemManager.restart();
+				}
+			}else{
+				block();
+			}
+		}
+	}
+}

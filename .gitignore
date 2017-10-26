@@ -3,8 +3,9 @@
 ### Java ###
 
 # Build 
-build/
+build/*
 nbproject/
+.idea/*
 
 # Compiled class file
 *.class

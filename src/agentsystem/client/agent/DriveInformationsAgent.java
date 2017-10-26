@@ -1,0 +1,57 @@
+package agentsystem.client.agent;
+
+import java.util.List;
+
+import agentsystem.client.utils.DriveInformation;
+import jade.core.behaviours.CyclicBehaviour;
+import jade.lang.acl.ACLMessage;
+
+public class DriveInformationsAgent extends MobileAgent {
+	private static final long serialVersionUID = 1L;
+	private List<DriveInformation> listInformation = null;
+
+	@Override
+	protected void setup() {
+		System.out.println(String.format("Hello! DriveInformations-agent %s is ready.", getAID().getName()));
+		addBehaviour(new ResponseDiskInfo());
+		System.out.println("disk-client is running...");
+	}
+
+	public List<DriveInformation> getListInformation() {
+		return listInformation;
+	}
+
+	private class ResponseDiskInfo extends CyclicBehaviour {
+		private static final long serialVersionUID = 1L;
+
+		@Override
+		public void action() {
+			ACLMessage msg = myAgent.receive();
+			System.out.println("disk-client recieved message");
+			if (msg != null) {
+				if (isNormalMessage(msg)) {
+					ACLMessage msg1 = msg.createReply();
+					listInformation = DriveInformation.getAll();
+					StringBuilder builder = new StringBuilder();
+					for (DriveInformation driveInformation : listInformation) {
+						builder.append(driveInformation.toString());
+						builder.append("\n");
+					}
+					msg1.setContent(builder.toString());
+					send(msg1);
+					System.out.println("disk-client sent response");
+				}
+			} else {
+				block();
+			}
+		}
+	}
+
+	@Override
+	protected void beforeMove() {
+		if (listInformation != null) {
+			listInformation.clear();
+			listInformation = null;
+		}
+	}
+}
