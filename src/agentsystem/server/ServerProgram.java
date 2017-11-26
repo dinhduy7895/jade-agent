@@ -46,18 +46,12 @@ public class ServerProgram {
                                     new Object[]{savingImagesDirectory}).start();
                             mainContainer.createNewAgent("disk-server",
                                     "agentsystem.server.agent.DiskAgent", new Object[]{}).start();
-                            mainContainer.createNewAgent("chat-server",
-                                    "agentsystem.server.agent.ChattingAgentServer", new Object[]{}).start();
-                            mainContainer.createNewAgent("logout-server",
-                                    "agentsystem.server.agent.LogoutAgent", new Object[]{}).start();
                             mainContainer.createNewAgent("shutdown-server",
                                     "agentsystem.server.agent.ShutdownPCAgent", new Object[]{})
                                     .start();
                             mainContainer.createNewAgent("send-message-server",
                                     "agentsystem.server.agent.SendMessageAgent",
                                     new Object[]{}).start();
-                            mainContainer.createNewAgent("restart-server",
-                                    "agentsystem.server.agent.RestartPCAgent", new Object[]{}).start();
                             mainContainer.createNewAgent("capture-server",
                                     "agentsystem.server.agent.CaptureAgent", new Object[]{}).start();
                         } catch (StaleProxyException e) {

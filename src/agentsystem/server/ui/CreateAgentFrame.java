@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 public class CreateAgentFrame extends JFrame implements ActionListener {
 
     private JComboBox comboBoxListAgents;
-    public static String[] AGENTS = {"Logout", "Shutdown", "Restart", "Disk", "Capture", "Chat", "Message"};
+    public static String[] AGENTS = {"Shutdown", "Disk", "Capture", "Message"};
     private static String CREATE_AGENT_COMMAND = "create-agent";
     private ServerMonitorFrame parentFrame;
 

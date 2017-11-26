@@ -72,7 +72,7 @@ public class ServerMonitorFrame extends JFrame {
         this.serverAgent = serverAgent;
         setResizable(false);
         setTitle("Server Monitor: Agent Management System");
-        setSize(834, 773);
+        setSize(834, 700);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         JMenuBar menuBar = new JMenuBar();
@@ -134,14 +134,14 @@ public class ServerMonitorFrame extends JFrame {
         btnDeleteAgent.setBounds(122, 11, 102, 28);
         panel.add(btnDeleteAgent);
 
-        JButton btnControlAgent = new JButton("Control Agent");
-        btnControlAgent.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                controlAgent();
-            }
-        });
-        btnControlAgent.setBounds(234, 11, 102, 28);
-        panel.add(btnControlAgent);
+//        JButton btnControlAgent = new JButton("Control Agent");
+//        btnControlAgent.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                controlAgent();
+//            }
+//        });
+//        btnControlAgent.setBounds(234, 11, 102, 28);
+//        panel.add(btnControlAgent);
 
         JButton btnSendMessage = new JButton("Send Message");
         btnSendMessage.addActionListener(new ActionListener() {
@@ -149,17 +149,8 @@ public class ServerMonitorFrame extends JFrame {
                 sendMessage();
             }
         });
-        btnSendMessage.setBounds(346, 11, 102, 28);
+        btnSendMessage.setBounds(234, 11, 102, 28);
         panel.add(btnSendMessage);
-
-        JButton btnChat = new JButton("Chat");
-        btnChat.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                chat();
-            }
-        });
-        btnChat.setBounds(458, 11, 102, 28);
-        panel.add(btnChat);
 
         JButton btnCaptureScreen = new JButton("Capture");
         btnCaptureScreen.addActionListener(new ActionListener() {
@@ -167,35 +158,8 @@ public class ServerMonitorFrame extends JFrame {
                 captureScreen();
             }
         });
-        btnCaptureScreen.setBounds(570, 11, 102, 28);
+        btnCaptureScreen.setBounds(346, 11, 102, 28);
         panel.add(btnCaptureScreen);
-
-        JButton btnShutdown = new JButton("Shutdown");
-        btnShutdown.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                shutdownComputer();
-            }
-        });
-        btnShutdown.setBounds(682, 11, 102, 28);
-        panel.add(btnShutdown);
-
-        JButton btnRestart = new JButton("Restart");
-        btnRestart.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                restartComputer();
-            }
-        });
-        btnRestart.setBounds(10, 50, 102, 28);
-        panel.add(btnRestart);
-
-        JButton btnLogout = new JButton("Logout");
-        btnLogout.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                logoutComputer();
-            }
-        });
-        btnLogout.setBounds(122, 50, 102, 28);
-        panel.add(btnLogout);
 
         JButton btnDisk = new JButton("Disk");
         btnDisk.addActionListener(new ActionListener() {
@@ -203,8 +167,17 @@ public class ServerMonitorFrame extends JFrame {
                 showDisk();
             }
         });
-        btnDisk.setBounds(234, 50, 102, 28);
+        btnDisk.setBounds(458, 11, 102, 28);
         panel.add(btnDisk);
+
+        JButton btnShutdown = new JButton("Shutdown");
+        btnShutdown.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                shutdownComputer();
+            }
+        });
+        btnShutdown.setBounds(562, 11, 102, 28);
+        panel.add(btnShutdown);
 
         JButton btnRefresh = new JButton("Refresh");
         btnRefresh.addActionListener(new ActionListener() {
@@ -212,7 +185,7 @@ public class ServerMonitorFrame extends JFrame {
                 refreshAgentsList();
             }
         });
-        btnRefresh.setBounds(346, 50, 102, 28);
+        btnRefresh.setBounds(672, 11, 102, 28);
         panel.add(btnRefresh);
 
         JLabel lblNewLabel = new JLabel("Agents List");
@@ -270,12 +243,13 @@ public class ServerMonitorFrame extends JFrame {
         panel_1.add(labAgentId);
 
         JLabel lblWorkstation = new JLabel("Workstation Information");
-        lblWorkstation.setBounds(454, 346, 148, 14);
+        lblWorkstation.setBounds(10, 400, 148, 14);
         getContentPane().add(lblWorkstation);
 
         JPanel panel_2 = new JPanel();
         panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
-        panel_2.setBounds(457, 371, 354, 136);
+//        panel_2.setBounds(457, 371, 354, 136);
+        panel_2.setBounds(10, 412, 354, 136);
         getContentPane().add(panel_2);
         panel_2.setLayout(null);
 
@@ -320,12 +294,12 @@ public class ServerMonitorFrame extends JFrame {
         panel_2.add(labWorkstationName);
 
         JLabel lblMoveAgent = new JLabel("Move Agent");
-        lblMoveAgent.setBounds(454, 518, 80, 14);
+        lblMoveAgent.setBounds(454, 340, 80, 14);
         getContentPane().add(lblMoveAgent);
 
         JPanel panel_3 = new JPanel();
         panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
-        panel_3.setBounds(457, 543, 354, 170);
+        panel_3.setBounds(457, 360, 354, 170);
         getContentPane().add(panel_3);
         panel_3.setLayout(null);
 
@@ -388,12 +362,12 @@ public class ServerMonitorFrame extends JFrame {
         scrollPane_1.setViewportView(lstLocation);
 
         JLabel lblConnectionInformation = new JLabel("Connection Information");
-        lblConnectionInformation.setBounds(10, 603, 205, 14);
+        lblConnectionInformation.setBounds(10, 550, 205, 14);
         getContentPane().add(lblConnectionInformation);
 
         JPanel panel_4 = new JPanel();
         panel_4.setBorder(new LineBorder(new Color(0, 0, 0)));
-        panel_4.setBounds(10, 628, 383, 60);
+        panel_4.setBounds(10, 570, 383, 60);
         getContentPane().add(panel_4);
         panel_4.setLayout(null);
 
@@ -405,7 +379,7 @@ public class ServerMonitorFrame extends JFrame {
         lblServerPort.setBounds(10, 36, 76, 14);
         panel_4.add(lblServerPort);
 
-        labConnectionServerPort = new JLabel("3393");
+        labConnectionServerPort = new JLabel("111");
         labConnectionServerPort.setBounds(75, 36, 46, 14);
         panel_4.add(labConnectionServerPort);
 
@@ -414,7 +388,7 @@ public class ServerMonitorFrame extends JFrame {
         panel_4.add(labConnectionServerIP);
 
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(10, 141, 437, 451);
+        scrollPane.setBounds(10, 141, 437, 250);
         getContentPane().add(scrollPane);
 
         table = new JTable();
@@ -603,21 +577,16 @@ public class ServerMonitorFrame extends JFrame {
 
     public void createAgentCallback() {
         try {
-            if ("Logout".equals(selectedAgent)) {
-                ServerProgram.getMainContainer()
-                        .createNewAgent("logout-client",
-                                "agentsystem.client.agent.LogoutPCAgent", new Object[]{})
-                        .start();
-            } else if ("Shutdown".equals(selectedAgent)) {
+            if ("Shutdown".equals(selectedAgent)) {
                 ServerProgram.getMainContainer()
                         .createNewAgent("shutdown-client",
                                 "agentsystem.client.agent.ShutdownPCAgent", new Object[]{})
                         .start();
-            } else if ("Restart".equals(selectedAgent)) {
-                ServerProgram.getMainContainer()
-                        .createNewAgent("restart-client",
-                                "agentsystem.client.agent.RestartPCAgent", new Object[]{})
-                        .start();
+//            } else if ("Restart".equals(selectedAgent)) {
+//                ServerProgram.getMainContainer()
+//                        .createNewAgent("restart-client",
+//                                "agentsystem.client.agent.RestartPCAgent", new Object[]{})
+//                        .start();
             } else if ("Disk".equals(selectedAgent)) {
                 ServerProgram.getMainContainer()
                         .createNewAgent("disk-client",
@@ -629,12 +598,12 @@ public class ServerMonitorFrame extends JFrame {
                         .createNewAgent("capture-client",
                                 "agentsystem.client.agent.ScreenCaptureAgent", new Object[]{})
                         .start();
-            } else if ("Chat".equals(selectedAgent)) {
-                ServerProgram.getMainContainer()
-                        .createNewAgent("chat-client",
-                                "agentsystem.client.agent.ChattingAgentClient",
-                                new Object[]{})
-                        .start();
+//            } else if ("Chat".equals(selectedAgent)) {
+//                ServerProgram.getMainContainer()
+//                        .createNewAgent("chat-client",
+//                                "agentsystem.client.agent.ChattingAgentClient",
+//                                new Object[]{})
+//                        .start();
             } else if ("Message".equals(selectedAgent)) {
                 ServerProgram.getMainContainer()
                         .createNewAgent("send-message-client",
