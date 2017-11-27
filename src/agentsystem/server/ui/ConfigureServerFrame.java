@@ -11,9 +11,12 @@ import agentsystem.server.Constants;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.awt.event.ActionEvent;
+import javax.swing.JFileChooser;
 
 public class ConfigureServerFrame extends JFrame {
-
+    
+    String choosertitle;
+    ConfigureServerFrame self;
     private OnConfigurationChangedListener onConfigurationChangedListener;
 
     public void setOnConfigurationChangedListener(OnConfigurationChangedListener listener) {
@@ -21,12 +24,13 @@ public class ConfigureServerFrame extends JFrame {
     }
 
     public ConfigureServerFrame() {
+        self = this;
         setTitle("Configure Server");
-        setSize(347, 238);
+        setSize(800, 238);
         getContentPane().setLayout(null);
 
         JPanel panel = new JPanel();
-        panel.setBounds(19, 155, 302, 45);
+        panel.setBounds(39, 155, 700, 45);
         getContentPane().add(panel);
         panel.setLayout(null);
 
@@ -71,9 +75,30 @@ public class ConfigureServerFrame extends JFrame {
         txtImagesDirectory.setColumns(10);
 
         txtPort = new JTextField();
-        txtPort.setBounds(144, 33, 86, 20);
+        txtPort.setBounds(144, 33,  100, 23);
         getContentPane().add(txtPort);
         txtPort.setColumns(10);
+        
+        JButton btnchoose = new JButton("Browse");
+        btnchoose.setBounds(330,8, 89, 23);
+        btnchoose.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setCurrentDirectory(new java.io.File("."));
+                fileChooser.setDialogTitle(choosertitle);
+                fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                fileChooser.setAcceptAllFileFilterUsed(false);
+                int returnVal = fileChooser.showOpenDialog(self);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File file = fileChooser.getSelectedFile();
+                    txtImagesDirectory.setText(file.getAbsolutePath());
+                }
+
+            }
+        });
+        getContentPane().add(btnchoose);
+        
+        
     }
 
     protected void closeFrame() {
