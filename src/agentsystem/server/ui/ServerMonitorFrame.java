@@ -33,6 +33,8 @@ import jade.util.leap.Iterator;
 import jade.wrapper.AgentController;
 import jade.wrapper.ControllerException;
 import jade.wrapper.StaleProxyException;
+import java.awt.Font;
+import java.awt.Image;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
@@ -47,6 +49,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class ServerMonitorFrame extends JFrame {
 
@@ -67,7 +71,22 @@ public class ServerMonitorFrame extends JFrame {
     private JLabel labConnectionServerPort;
     private JList<Location> lstLocation;
     private JLabel labelHostname;
-
+    
+    public ImageIcon getIcon(String name){
+        ImageIcon water = new ImageIcon(ConfigureServerFrame.class.getResource("../../../image/"+name));
+        Image img = water.getImage() ;  
+        Image newimg = img.getScaledInstance( 30, 20,  java.awt.Image.SCALE_SMOOTH ) ;  
+        water = new ImageIcon( newimg );
+        return  water;
+    }
+    
+    public JButton fixSize(JButton btn){
+        btn.setVerticalTextPosition(SwingConstants.BOTTOM);
+        btn.setHorizontalTextPosition(SwingConstants.CENTER);
+        btn.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        return btn;
+    }
+    
     public ServerMonitorFrame(ServerAgent serverAgent) {
         this.serverAgent = serverAgent;
         setResizable(false);
@@ -97,17 +116,7 @@ public class ServerMonitorFrame extends JFrame {
         });
         mnManageServer.add(mntmShutdownServer);
 
-        JMenu mnGeneralControl = new JMenu("General Control");
-        menuBar.add(mnGeneralControl);
-
-        JMenu mnInfo = new JMenu("Information");
-        menuBar.add(mnInfo);
-
-        JMenuItem mntmAbout = new JMenuItem("About...");
-        mnInfo.add(mntmAbout);
-
-        JMenuItem mntmHelp = new JMenuItem("Help...");
-        mnInfo.add(mntmHelp);
+       
         getContentPane().setLayout(null);
 
         JPanel panel = new JPanel();
@@ -116,16 +125,18 @@ public class ServerMonitorFrame extends JFrame {
         getContentPane().add(panel);
         panel.setLayout(null);
 
-        JButton btnCreateAgent = new JButton("Create Agent");
+        JButton btnCreateAgent = new JButton("Create Agent",getIcon("plus.png"));
+        btnCreateAgent = fixSize(btnCreateAgent);
         btnCreateAgent.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 createAgent();
             }
         });
-        btnCreateAgent.setBounds(10, 11, 102, 28);
+        btnCreateAgent.setBounds(10, 11, 102, 50);
         panel.add(btnCreateAgent);
 
-        JButton btnDeleteAgent = new JButton("Delete Agent");
+        JButton btnDeleteAgent = new JButton("Delete Agent", getIcon("del.png"));
+        btnDeleteAgent = fixSize(btnDeleteAgent);
         btnDeleteAgent.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 deleteAgent();
@@ -134,16 +145,9 @@ public class ServerMonitorFrame extends JFrame {
         btnDeleteAgent.setBounds(122, 11, 102, 28);
         panel.add(btnDeleteAgent);
 
-//        JButton btnControlAgent = new JButton("Control Agent");
-//        btnControlAgent.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                controlAgent();
-//            }
-//        });
-//        btnControlAgent.setBounds(234, 11, 102, 28);
-//        panel.add(btnControlAgent);
 
-        JButton btnSendMessage = new JButton("Send Message");
+        JButton btnSendMessage = new JButton("Send Message", getIcon("sms.png"));
+        btnSendMessage = fixSize(btnSendMessage);
         btnSendMessage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 sendMessage();
@@ -152,7 +156,8 @@ public class ServerMonitorFrame extends JFrame {
         btnSendMessage.setBounds(234, 11, 102, 28);
         panel.add(btnSendMessage);
 
-        JButton btnCaptureScreen = new JButton("Capture");
+        JButton btnCaptureScreen = new JButton("Capture", getIcon("capture.png"));
+        btnCaptureScreen = fixSize(btnCaptureScreen);
         btnCaptureScreen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 captureScreen();
@@ -161,7 +166,8 @@ public class ServerMonitorFrame extends JFrame {
         btnCaptureScreen.setBounds(346, 11, 102, 28);
         panel.add(btnCaptureScreen);
 
-        JButton btnDisk = new JButton("Disk");
+        JButton btnDisk = new JButton("Disk",getIcon("sys.png"));
+        btnDisk = fixSize(btnDisk);
         btnDisk.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 showDisk();
@@ -170,7 +176,8 @@ public class ServerMonitorFrame extends JFrame {
         btnDisk.setBounds(458, 11, 102, 28);
         panel.add(btnDisk);
 
-        JButton btnShutdown = new JButton("Shutdown");
+        JButton btnShutdown = new JButton("Shutdown",getIcon("shut.png"));
+        btnShutdown = fixSize(btnShutdown);
         btnShutdown.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 shutdownComputer();
@@ -179,7 +186,8 @@ public class ServerMonitorFrame extends JFrame {
         btnShutdown.setBounds(562, 11, 102, 28);
         panel.add(btnShutdown);
 
-        JButton btnRefresh = new JButton("Refresh");
+        JButton btnRefresh = new JButton("Refresh",getIcon("refresh.png"));
+        btnRefresh = fixSize(btnRefresh);
         btnRefresh.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 refreshAgentsList();
