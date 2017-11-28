@@ -55,7 +55,7 @@ public class DriveInformation {
 
 	@Override
 	public String toString() {
-		return letter + ": " + capacityInGB + "BG - " + typeDescription;
+		return letter + ": " + capacityInGB + "GB - " + typeDescription;
 	}
 
 }
