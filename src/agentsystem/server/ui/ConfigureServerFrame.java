@@ -25,13 +25,20 @@ public class ConfigureServerFrame extends JFrame {
         onConfigurationChangedListener = listener;
     }
     
-    public ImageIcon getIcon(String name){
-        ImageIcon water = new ImageIcon(ConfigureServerFrame.class.getResource("../../../image/"+name));
-        Image img = water.getImage() ;  
-        Image newimg = img.getScaledInstance( 30, 20,  java.awt.Image.SCALE_SMOOTH ) ;  
-        water = new ImageIcon( newimg );
-        return  water;
-    }
+    private static ImageIcon getIcon(String name) {
+		java.net.URL imgURL = ConfigureServerFrame.class.getResource("/image/" + name);
+		if (imgURL != null) {
+			ImageIcon water = new ImageIcon(imgURL);
+			Image img = water.getImage();
+			Image newimg = img.getScaledInstance(30, 20, java.awt.Image.SCALE_SMOOTH);
+			water = new ImageIcon(newimg);
+			return water;
+		} else {
+			System.err.println("Couldn't find file: " + name);
+			return null;
+		}
+	}
+
     
     public ConfigureServerFrame() {
         self = this;

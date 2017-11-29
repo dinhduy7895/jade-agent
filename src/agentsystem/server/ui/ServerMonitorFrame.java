@@ -72,13 +72,20 @@ public class ServerMonitorFrame extends JFrame {
     private JList<Location> lstLocation;
     private JLabel labelHostname;
     
-    public ImageIcon getIcon(String name){
-        ImageIcon water = new ImageIcon(ConfigureServerFrame.class.getResource("../../../image/"+name));
-        Image img = water.getImage() ;  
-        Image newimg = img.getScaledInstance( 30, 20,  java.awt.Image.SCALE_SMOOTH ) ;  
-        water = new ImageIcon( newimg );
-        return  water;
-    }
+    private static ImageIcon getIcon(String name) {
+		java.net.URL imgURL = ServerMonitorFrame.class.getResource("/image/" + name);
+		if (imgURL != null) {
+			ImageIcon water = new ImageIcon(imgURL);
+			Image img = water.getImage();
+			Image newimg = img.getScaledInstance(30, 20, java.awt.Image.SCALE_SMOOTH);
+			water = new ImageIcon(newimg);
+			return water;
+		} else {
+			System.err.println("Couldn't find file: " + name);
+			return null;
+		}
+	}
+
     
     public JButton fixSize(JButton btn){
         btn.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -142,7 +149,7 @@ public class ServerMonitorFrame extends JFrame {
                 deleteAgent();
             }
         });
-        btnDeleteAgent.setBounds(122, 11, 102, 28);
+        btnDeleteAgent.setBounds(122, 11, 102, 50);
         panel.add(btnDeleteAgent);
 
 
@@ -153,7 +160,7 @@ public class ServerMonitorFrame extends JFrame {
                 sendMessage();
             }
         });
-        btnSendMessage.setBounds(234, 11, 102, 28);
+        btnSendMessage.setBounds(234, 11, 102, 50);
         panel.add(btnSendMessage);
 
         JButton btnCaptureScreen = new JButton("Capture", getIcon("capture.png"));
@@ -163,7 +170,7 @@ public class ServerMonitorFrame extends JFrame {
                 captureScreen();
             }
         });
-        btnCaptureScreen.setBounds(346, 11, 102, 28);
+        btnCaptureScreen.setBounds(346, 11, 102, 50);
         panel.add(btnCaptureScreen);
 
         JButton btnDisk = new JButton("Disk",getIcon("sys.png"));
@@ -173,7 +180,7 @@ public class ServerMonitorFrame extends JFrame {
                 showDisk();
             }
         });
-        btnDisk.setBounds(458, 11, 102, 28);
+        btnDisk.setBounds(458, 11, 102, 50);
         panel.add(btnDisk);
 
         JButton btnShutdown = new JButton("Shutdown",getIcon("shut.png"));
@@ -183,7 +190,7 @@ public class ServerMonitorFrame extends JFrame {
                 shutdownComputer();
             }
         });
-        btnShutdown.setBounds(562, 11, 102, 28);
+        btnShutdown.setBounds(562, 11, 102, 50);
         panel.add(btnShutdown);
 
         JButton btnRefresh = new JButton("Refresh",getIcon("refresh.png"));
@@ -193,7 +200,7 @@ public class ServerMonitorFrame extends JFrame {
                 refreshAgentsList();
             }
         });
-        btnRefresh.setBounds(672, 11, 102, 28);
+        btnRefresh.setBounds(672, 11, 102, 50);
         panel.add(btnRefresh);
 
         JLabel lblNewLabel = new JLabel("Agents List");
