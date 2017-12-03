@@ -163,7 +163,7 @@ public class ServerMonitorFrame extends JFrame {
         btnSendMessage.setBounds(234, 11, 102, 50);
         panel.add(btnSendMessage);
 
-        JButton btnCaptureScreen = new JButton("Capture", getIcon("capture.png"));
+        JButton btnCaptureScreen = new JButton("Capture", getIcon("camera.png"));
         btnCaptureScreen = fixSize(btnCaptureScreen);
         btnCaptureScreen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

@@ -52,7 +52,7 @@ public class ConfigureClientFrame extends JFrame {
 		txtIP.setColumns(10);
 
 		txtPort = new JTextField();
-		txtPort.setText("3393");
+		txtPort.setText("1111");
 		txtPort.setBounds(90, 33, 231, 20);
 		getContentPane().add(txtPort);
 		txtPort.setColumns(10);
